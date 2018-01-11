@@ -1,0 +1,14 @@
+apply plugin :'java'
+apply from : '../functionalTestProperties.gradle'
+dependencies{
+	
+ 	testCompile libraries.OGTTestCompile
+ 	
+ }
+
+
+if(excludeTest=="true"){
+	check.dependsOn -= test
+}else{
+	check.dependsOn +=test
+}

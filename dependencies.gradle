@@ -1,0 +1,92 @@
+ext{
+
+ 	itCoreVersion = "latest.release"
+	javaxServletApiVersion = "3.0.+"
+	latestVersion = "latest.release"
+
+	libraries = [
+	
+		OGTBusinessCompile : [
+			"com.ford.it.fjf:itcore:$itCoreVersion",
+			project (":OGTCommon"),
+			project (":OGTDomain")
+		],
+		OGTCommonCompile : [
+			"com.ford.it.fjf:itcore:$itCoreVersion",
+			"javax.servlet:javax.servlet-api:$javaxServletApiVersion",
+			"com.ford.it.fjf:apsclient:$latestVersion",
+			"com.ford.it.fjf:apsplugin:$latestVersion",
+			files('lib/javax.inject-1.jar'),
+			"javax.ws.rs:javax.ws.rs-api:$latestVersion",
+			"com.ford.it.fjf:ford-rest:$latestVersion",
+			"org.apache.wink:wink-client:$latestVersion"
+		],
+		OGTDomainCompile : [
+			project (":OGTCommon"),
+			files('lib/cdi-api-1.1.jar'),
+		],
+		OGTEARCompile : [
+		],
+		OGTTestCompile : [
+			project (":OGTBusiness"),
+			project (":OGTCommon"),
+			project (":OGTDomain"),
+			project (":OGTProperties"),
+			project (":OGTWeb"),
+			"junit:junit:4.12",
+			files('lib/FordTestCDI-1.1.2.jar'),
+			files('lib/FordTestCore-1.0.1.jar'),
+			files('lib/justify-cdi-6.0.0.jar'),
+			files('lib/justify-core-6.0.0.jar'),
+			"org.apache.deltaspike.core:deltaspike-core-api:$latestVersion",
+			files('lib/weld-servlet-2.1.2.Final.jar'),
+			"org.seleniumhq.selenium:selenium-java:2.44.0",
+			"info.cukes:cucumber-java:1.2.2",	
+			"info.cukes:cucumber-junit:1.2.2",
+			files('lib/phantomjsdriver-1.2.1.jar'),
+			files('lib/xml-apis-1.4.01.jar'),
+			//files('lib/selenium-edge-driver-3.8.1.jar')
+			"org.seleniumhq.selenium:selenium-edge-driver:$latestVersion"
+		],
+		OGTUICompile : [
+		
+		],
+		OGTWebCompile : [
+			"org.apache.wink:wink-client:$latestVersion",
+			project (":OGTBusiness"),
+			project (":OGTCommon"),
+			project (":OGTProperties"),
+			files('lib/javax.servlet-api-3.0.1.jar'),
+			"com.ford.it.fjf:itcore:$itCoreVersion",
+			files('lib/validation-api-1.1.0.Final.jar'),
+			"org.apache.deltaspike.core:deltaspike-core-api:$latestVersion",
+			"com.ford.it.fjf:ford-rest:$latestVersion",
+			files('lib/jsr311-api-1.1.1.jar'),
+			files('lib/cdi-api-1.1.jar'),
+			"org.apache.commons:commons-lang3:$latestVersion",
+			files('lib/disruptor-3.3.2.jar'),
+			files('lib/javax.json-1.0.jar'),
+			"xml-apis:xml-apis:$latestVersion",
+   		 	"xalan:serializer:$latestVersion",
+  		  	"com.ford.it.fjf:eclipselink-fix:$latestVersion",
+ 		  	"org.apache.commons:commons-lang3:$latestVersion",
+    		files('lib/weld-servlet-2.1.2.Final.jar')
+    	],
+		OGTWebTestCompile : [
+			project (":OGTBusiness"),
+			project (":OGTCommon"),
+			project (":OGTProperties"),
+			files('lib/javax.servlet-api-3.0.1.jar'),
+			files('lib/itcore.jar'),
+			files('lib/validation-api-1.1.0.Final.jar'),
+			files('lib/ford-rest-1.1.0-SNAPSHOT.jar'),
+			files('lib/jsr311-api-1.1.1.jar'),
+			files('lib/cdi-api-1.1.jar'),
+			"xml-apis:xml-apis:$latestVersion",
+   			"xalan:serializer:$latestVersion",
+  			"com.ford.it.fjf:eclipselink-fix:$latestVersion",
+ 		   	"org.apache.deltaspike.core:deltaspike-core-api:$latestVersion",
+		    "org.apache.commons:commons-lang3:$latestVersion"
+		]
+	]
+}

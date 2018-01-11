@@ -1,0 +1,51 @@
+apply plugin: 'distribution'
+
+
+distZip.extension = 'zip'
+distTar.enabled = false
+
+def libertyUserDir = 'OGTServer'    
+def libertyServerName = 'OGTServer'  
+ 
+
+distributions {
+    main {
+    
+      baseName="${ubuildName}-v${ubuildVersion}-${ubuildEnv}"
+        contents {
+            into('/') {    
+            		from ("./${libertyUserDir}/extension") {  
+       				into ('/wlp/usr/extension')  
+			   	}  
+			   	
+			   	from ("./${libertyUserDir}/shared") {  
+    			   into ('/wlp/usr/shared')  
+   				}  
+     
+			   from ("./${libertyUserDir}/servers/${libertyServerName}") {  
+			       into ("/wlp/usr/servers/${libertyServerName}")  
+			       exclude 'OGTServer.zip'
+			       exclude '**/apps/*'  
+			       exclude '**/dropins/*'  
+			       exclude '**/logs'  
+			       exclude '**/workarea/*'
+			       exclude '**/tranlog/*'    
+			   }
+			   from { project(':OGTEAR').ear }
+		        into ("/wlp/usr/servers/${libertyServerName}/dropins")  
+			from ("./${libertyUserDir}/manifest.yml")  {
+		        into ("/")  
+				}
+				  	
+           }
+           
+        }
+    }
+}
+
+
+subprojects {
+		tasks.matching{it.name == "check"}.all{
+			distZip.mustRunAfter it
+		}
+}
